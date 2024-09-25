@@ -25,7 +25,7 @@ pipeline {
                
                 // Your build commands here
             }
-        }
+        
 
         stage('Test') {
             steps {
@@ -35,6 +35,7 @@ pipeline {
                 // Your test commands here
             }
         }
+
 
         stage('Deploy') {
             steps {
@@ -47,3 +48,5 @@ pipeline {
             }
         }
     }
+
+}
