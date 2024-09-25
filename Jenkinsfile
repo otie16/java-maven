@@ -1,31 +1,36 @@
 pipeline {
     agent any
-    parameters {
-        choice(name: 'VERSION', choices: ['1.1.0', '1.2.0', '1.3.0'], description: '')
-        booleanParam(name: 'executeTests', defaultValue: true, description: '')
+
+    environment {
+        NEW_VERSION = "1.0.0" // Define your version here
     }
-    stages{
-        stage("build") {
+
+    stages {
+        stage('Checkout') {
             steps {
-                echo 'building the application...'
-                echo "building version ${NEW_VERSION}"
-            }
-         }
-        stage("test") {
-            when {
-                expression {
-                    params.executeTests == true
-                }
-            }
-            steps {
-                  echo 'testing the application...'
+                checkout scm
             }
         }
-        stage("deploy") {
+
+        stage('Build') {
             steps {
-                  echo 'deploying the application...'
-                  echo "deploying version ${params.VERSION}"
-                } 
+                echo "Building version ${NEW_VERSION}..."
+                // Your build commands here
+            }
+        }
+
+        stage('Test') {
+            steps {
+                echo "Running tests..."
+                // Your test commands here
+            }
+        }
+
+        stage('Deploy') {
+            steps {
+                echo "Deploying version ${NEW_VERSION}..."
+                // Your deployment commands here
             }
         }
     }
+}
