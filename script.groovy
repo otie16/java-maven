@@ -1,6 +1,8 @@
 def buildJar(){
     echo "building the application..."
+    echo "--------------------------------This is a webhook addition"
     sh 'mvn package'
+
 }
 
 def buildImage(){
@@ -10,6 +12,7 @@ def buildImage(){
         sh 'docker build -t otobongedoho18361/demo-app:jma-2.0 .'
         sh 'echo $PASS | docker login -u $USER --password-stdin'
         sh 'docker push otobongedoho18361/demo-app:jma-2.0'
+
     } 
 }
 
