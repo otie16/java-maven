@@ -1,3 +1,9 @@
+def incrementVersion(){
+    echo 'Incrementing app version'
+    sh 'mvn build-helper:parse-version versions:set \
+        -DnewVersion=\${parsedVersion.majorVersion}.\${parsedVersion.minorVersion}.\${parsedVersion.nextIncrementalVersion} versions:commit'
+}
+
 def buildJar(){
     echo "building the application..."
     echo "--------------------------------This is a webhook addition"
